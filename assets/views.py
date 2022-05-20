@@ -7,6 +7,10 @@ from .serializers import AssetSerializer, VulnerabilityInAssetSerializer, Vulner
 
 
 class AssetViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
+    '''
+    Viewset do model Asset, contendo os campos de ordenação por risk_factor (descendente e ascendente) e 
+    pesquisa por hostname e ip
+    '''
     queryset = Asset.objects.all()
     serializer_class = AssetSerializer
     # ordenando por maiores risk_factors primeiro
@@ -17,6 +21,10 @@ class AssetViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericView
 
 
 class VulnerabilityInAssetViewSet(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet):
+    '''
+    Viewset do model VulnerabilityInAsset contendo retrieve, list e update (no caso de solved)
+    e a função get_serializer_class que faz essa diferenciação
+    '''
     queryset = VulnerabilityInAsset.objects.all()
     serializer_class = VulnerabilityInAssetSerializer
     filter_class = VulnerabilityInAssetFilterSet

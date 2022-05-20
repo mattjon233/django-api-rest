@@ -4,6 +4,9 @@ from vulnerabilities.serializers import VulnerabilitySerializer
 
 
 class AssetSerializer(serializers.ModelSerializer):
+    '''
+    Serializer contendo a função get_vulnerabilities_count para fins de visualização
+    '''
     vulnerabilities_count = serializers.SerializerMethodField()
 
     class Meta:
@@ -15,13 +18,19 @@ class AssetSerializer(serializers.ModelSerializer):
 
 
 class VulnerabilityInAssetSerializer(serializers.ModelSerializer):
+    '''
+    Serializer contendo apenas o campo solved (aparecerá apenas o campo solved)
+    '''
     class Meta:
         model = VulnerabilityInAsset
         fields = ('solved', )
 
 
 class VulnerabilityInAssetDetailSerializer(serializers.ModelSerializer):
-    # exibir essas tabelas no response
+    '''
+    Serializer auxiliar para VulnerabilityInAsset, ele serve para listar todos os campos
+    quando se está decidindo se quer marcar ou não como resolvida
+    '''
     asset = AssetSerializer(read_only=True)
     vulnerability = VulnerabilitySerializer(read_only=True)
     

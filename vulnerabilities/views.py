@@ -7,6 +7,10 @@ from .serializers import VulnerabilitySerializer
 
 
 class VulnerabilityViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
+    '''
+    Viewste da Vulnerability contendo os campos de ordenação por cvss (asc e desc) e severity e os campos
+    de pesquisa via title
+    '''
     queryset = Vulnerability.objects.all()
     serializer_class = VulnerabilitySerializer
     # ordenando por maiores cvss primeiro

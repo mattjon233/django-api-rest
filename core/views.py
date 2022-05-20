@@ -7,7 +7,9 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 
 def csv_create(request):
-    # import ipdb; ipdb.set_trace()
+    '''
+    Função que faz o load do csv, lendo o arquivo de entrada e retornando um JsonResponse
+    '''
     data = pd.read_csv('asset_vulnerability.csv').to_dict('records')
     
     # linha a linha
